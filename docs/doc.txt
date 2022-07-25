@@ -1,12 +1,3 @@
-redditJSON.data.children = [
-  {data: {
-    title,
-    selftext,
-    thumbnail,
-    subreddit,
-    author,
-    url,
-    score,
-    upvote_ratio
-    }}
-]
+if url includes "www.reddit.com/gallery":
+  media_metadata
+  eg. /r/pics/comments/w7q9wl/some_of_my_favorite_shots_after_shooting_street/
