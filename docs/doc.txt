@@ -1,0 +1,12 @@
+redditJSON.data.children = [
+  {data: {
+    title,
+    selftext,
+    thumbnail,
+    subreddit,
+    author,
+    url,
+    score,
+    upvote_ratio
+    }}
+]
