@@ -4,7 +4,7 @@ export default function Comment(props) {
 
   const {author,score,body_html} = props.data;
 
-  useEffect(parseHTML,[]);
+  useEffect(parseHTML);
 
   function parseHTML() {
     const htmlLoader = document.createElement("p");

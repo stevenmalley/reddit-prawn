@@ -17,7 +17,7 @@ export default function PostPage() {
       setComments(jsonResponse[1].data.children);
     }
     fetchReddit();
-  },[]);
+  },[params]);
 
   return (
     <div>

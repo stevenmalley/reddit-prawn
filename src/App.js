@@ -10,7 +10,7 @@ function App() {
       <Router>
         <Link to="/">
           <div id="redditPrawnHeader">
-            <img src={require("./images/proo.png")} />
+            <img src={require("./images/proo.png")} alt="reddit-prawn logo" />
             <h1>REDDIT PRAWN</h1>
           </div>
         </Link>
