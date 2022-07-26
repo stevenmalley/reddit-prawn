@@ -1,6 +1,7 @@
 import { Link, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import PostList from './components/PostList';
 import PostPage from './components/PostPage';
+import SubredditMenu from './components/SubredditMenu';
 import './App.css';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
@@ -20,6 +21,7 @@ function App() {
             <h1>REDDIT PRAWN</h1>
           </div>
         </Link>
+        <SubredditMenu />
         <Routes>
           <Route path="/" element={<PostList />} />
           <Route path="/r/:subreddit" element={<PostList />} />

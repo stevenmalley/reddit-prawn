@@ -17,3 +17,61 @@ a {
 #redditPrawnHeader img {
   width: 100px;
 }
+
+#subredditMenu {
+  width: 200px;
+  position: absolute;
+  right: 0;
+}
+
+#subredditMenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.subredditLink {
+  margin: 5px 0;
+}
+
+.subredditLink a {
+  display: inline-block;
+  width: 160px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  color: black;
+}
+
+.subredditLink a:hover {
+  background: rgb(246, 255, 126);
+}
+
+#postList, #postPage {
+  float: left;
+  margin-right: 210px;
+  padding: 0 20px;
+}
+
+
+@media all and (max-width: 800px) {
+  #subredditMenu {
+    position: static;
+    width: 100%;
+  }
+
+  #subredditMenu h2 {
+    text-align: center;
+    margin: 0;
+  }
+
+  .subredditLink {
+    display: inline-block;
+    margin: 2px;
+  }
+
+  #postList, #postPage {
+    margin-right: 0;
+    padding: 0 4px;
+  }
+}

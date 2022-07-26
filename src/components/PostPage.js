@@ -9,7 +9,7 @@ export default function PostPage() {
 
   const dispatch = useDispatch();
   const {postList,commentList:comments} = useSelector(redditSelector);
-  const post = postList[0].data;
+  const post = postList.length > 0 ? postList[0].data : {};
   const params = useParams();
 
   useEffect(()=>{
@@ -25,7 +25,7 @@ export default function PostPage() {
   },[params,dispatch]);
 
   return (
-    <div>
+    <div id="postPage">
       {post.title ? <PostContent id={0} data={post} postPage={"postPage"} /> : null}
       {comments.map((comment,c) => <Comment key={"comment"+c} id={c} data={comment.data} />)}
   </div>

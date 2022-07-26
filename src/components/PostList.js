@@ -17,7 +17,7 @@ export default function PostList() {
   },[subreddit,dispatch]);
 
   return (
-    <div>
+    <div id="postList">
       {reddit.map((post,p) => <PostContent key={"redditPost"+p} id={p} data={post.data} clickable={true} />)}
     </div>
   );
