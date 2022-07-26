@@ -1,3 +1,0 @@
-if url includes "www.reddit.com/gallery":
-  media_metadata
-  eg. /r/pics/comments/w7q9wl/some_of_my_favorite_shots_after_shooting_street/

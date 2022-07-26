@@ -16,7 +16,9 @@ function App() {
         </Link>
         <Routes>
           <Route path="/" element={<Prawn />} />
-          <Route path="/r/*" element={<PostPage />} />
+{/*          <Route path="/r/*" element={<PostPage />} /> */}
+          <Route path="/r/:subreddit" element={<Prawn />} />
+          <Route path="/r/:subreddit/comments/*" element={<PostPage />} />
         </Routes>
       </Router>
     </div>

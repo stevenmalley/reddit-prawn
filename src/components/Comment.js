@@ -18,13 +18,11 @@ export default function Comment(props) {
 
   return (
     <div className="comment" onClick={logger}>
-      <div className="leftBox">
-        {author}
-        <div className="commentScore">{score}</div>
+      <div className="commentHeader">
+        <span className="scoreSpan">{score}</span>
+        <span className="authorSpan">{author}</span>
       </div>
-      <div className="mainBox">
-        <div id={"comment"+props.id}></div>
-      </div>
+      <div id={"comment"+props.id}></div>
     </div>
   )
 }
