@@ -19,7 +19,7 @@ export default function Comment(props) {
   return (
     <div className="comment" onClick={logger}>
       <div className="commentHeader">
-        <span className="scoreSpan">{score}</span>
+        <span className="scoreSpan">{score} upvotes</span>
         <span className="authorSpan">{author}</span>
       </div>
       <div id={"comment"+props.id}></div>

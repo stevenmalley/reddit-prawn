@@ -3,8 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../styles/PostContent.css';
 
 export default function PostContent(props) {
-  const {title,selftext_html,thumbnail,subreddit,author,url,permalink,score,media,media_metadata,post_hint} = props.data;
-  // other attributes: selftext, preview, upvote_ratio, secure_media
+  const {title,selftext_html,thumbnail,subreddit,author,url,permalink,score,media,media_metadata,post_hint,num_comments} = props.data;
+  // other attributes: selftext,preview,upvote_ratio,secure_media,domain
   // preview url: preview.images[0].source.url
 
   const navigate = useNavigate();
@@ -17,12 +17,18 @@ export default function PostContent(props) {
     document.getElementById("selftext"+props.id).innerHTML = htmlLoader.textContent;
   }
 
-  function displayGallery() {
-    const galleryImages = [];
-    for (const image in media_metadata) {
-      galleryImages.push(<img key={"gallery-"+image} src={"https://i.redd.it/"+image+".jpg"} alt="gallery media" />);
+  function displayContent() {
+    if (url.includes("i.redd.it") || url.includes("imgur.com")) return <img src={url} alt="post content" />;
+    if (url.includes("v.redd.it")) return <video src={media.reddit_video.fallback_url} controls />;
+    if (url.includes("reddit.com/gallery")) {
+      const galleryImages = [];
+      for (const image in media_metadata) {
+        galleryImages.push(<img key={"gallery-"+image} src={"https://i.redd.it/"+image+".jpg"} alt="gallery media" />);
+      }
+      return galleryImages;  
     }
-    return galleryImages;
+    if (selftext_html === null && !url.startsWith("https://www.reddit.com")) return <a href={url}>{url}</a>;
+    return null;
   }
 
   if (props.postPage === "postPage") console.log(props.data);
@@ -30,11 +36,13 @@ export default function PostContent(props) {
   return (
     <div className="postContent">
       <div className="postHeader">
-        <span className="scoreSpan">{score}</span>
+        <span className="scoreSpan">{score} upvotes</span>
         <span className="authorSpan">{author}</span>
         <span className="subredditSpan"><Link to={"/r/"+subreddit}>/r/{subreddit}</Link></span>
       </div>
       <div className="leftBox">
+        {num_comments} comments
+        <br />
         {post_hint === "link" && thumbnail.startsWith("http") ? <img src={thumbnail} alt="post thumbnail" /> : null}
         <br />
         <a href={"http://www.reddit.com/"+permalink}>visit Reddit.com</a>
@@ -42,10 +50,7 @@ export default function PostContent(props) {
       <div className={props.clickable ? "mainBox clickable" : "mainBox"} onClick={props.clickable ? ()=>navigate(props.data.permalink) : ()=>{}}>
         <h2 className="postTitle">{title}</h2>
         <div className="selfTextDiv" id={"selftext"+props.id}></div>
-        {post_hint === "link" ? <a href={url}>{url}</a> : null}
-        {url.includes("i.redd.it") || url.includes("imgur.com") ? <img src={url} alt="post content" /> : null}
-        {url.includes("v.redd.it") ? <video src={media.reddit_video.fallback_url} controls></video> : null}
-        {url.includes("reddit.com/gallery") ? displayGallery() : null}
+        {displayContent()}
       </div>
     </div>
   );

@@ -35,6 +35,7 @@
   width: 80%;
   display: inline-block;
   text-align: center;
+  height: 100%;
 }
 
 .postContent img, .postContent video {
