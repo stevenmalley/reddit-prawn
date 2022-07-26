@@ -9,23 +9,15 @@ export default function PostPage() {
 
   const dispatch = useDispatch();
   const {postList,commentList:comments} = useSelector(redditSelector);
-  const post = postList[0].data;
+  const post = postList.length > 0 ? postList[0].data : {};
   const params = useParams();
 
   useEffect(()=>{
-    /*
-    async function fetchReddit() {
-      const response = await fetch("https://api.reddit.com/r/"+params.subreddit+"/comments/"+params["*"]);
-      const jsonResponse = await response.json();
-      setPost(jsonResponse[0].data.children[0].data);
-      setComments(jsonResponse[1].data.children.filter(child => child.kind === "t1"));
-    }
-    fetchReddit();*/
     dispatch(fetchPost(params.subreddit,params["*"]));
   },[params,dispatch]);
 
   return (
-    <div>
+    <div id="postPage">
       {post.title ? <PostContent id={0} data={post} postPage={"postPage"} /> : null}
       {comments.map((comment,c) => <Comment key={"comment"+c} id={c} data={comment.data} />)}
   </div>

@@ -19,7 +19,7 @@ export default function PostContent(props) {
 
   function displayContent() {
     if (url.includes("i.redd.it") || url.includes("imgur.com")) return <img src={url} alt="post content" />;
-    if (url.includes("v.redd.it")) return <video src={media.reddit_video.fallback_url} controls />;
+    if (url.includes("v.redd.it") && media) return <video src={media.reddit_video.fallback_url} controls />;
     if (url.includes("reddit.com/gallery")) {
       const galleryImages = [];
       for (const image in media_metadata) {
@@ -27,11 +27,9 @@ export default function PostContent(props) {
       }
       return galleryImages;  
     }
-    if (selftext_html === null && !url.startsWith("https://www.reddit.com")) return <a href={url}>{url}</a>;
+    if (selftext_html === null && !url.startsWith("https://www.reddit.com")) return <div style={{overflow:"hidden"}} ><a href={url}>{url}</a></div>;
     return null;
   }
-
-  if (props.postPage === "postPage") console.log(props.data);
 
   return (
     <div className="postContent">
@@ -41,7 +39,7 @@ export default function PostContent(props) {
         <span className="subredditSpan"><Link to={"/r/"+subreddit}>/r/{subreddit}</Link></span>
       </div>
       <div className="leftBox">
-        {num_comments} comments
+        <Link to={props.data.permalink}>{num_comments} comments</Link>
         <br />
         {post_hint === "link" && thumbnail.startsWith("http") ? <img src={thumbnail} alt="post thumbnail" /> : null}
         <br />
